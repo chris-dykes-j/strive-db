@@ -11,8 +11,8 @@ const pool = new pg({
 pool.connect();
 app.use(express.json());
 
-// Default homepage. Gets character names, cuz why not?
-app.get("/", async (_, res) => {
+// Gets character names, cuz why not?
+app.get("/characters", async (_, res) => {
 	try {
 		const char_query = await pool.query("SELECT * FROM characters;");
 		res.send(char_query);
