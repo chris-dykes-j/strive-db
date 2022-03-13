@@ -11,30 +11,30 @@ const pool = new pg({
 pool.connect();
 app.use(express.json());
 
-// Default homepage. Getting data for Ram right now, but should be fixed later.
+// Default homepage. Gets character names, cuz why not?
 app.get("/", async (_, res) => {
 	try {
-		const ram_query = await pool.query("SELECT * FROM move_list");
-		// console.log(ram_query);
-		res.send(ram_query);
+		const char_query = await pool.query("SELECT * FROM characters;");
+		res.send(char_query);
 	}
 	catch (err) {
 		if (err) { console.log(err); }
 	}
 });
 
+// Gets requested character move data.
 app.get("/:character", async (req, res) => {
-	console.log(req.params.id);
+	// console.log(req.params.character);
 	try {
 		const move_query = await pool.query(
 			`SELECT characters.character_name, move_list.*
-			FROM characters
-			JOIN move_list
+			FROM characters RIGHT JOIN move_list
 			ON characters.character_id = move_list.character_id
-			
-			ORDER BY move_id;`);
-		// How to get :character? Below not working.
-		// WHERE characters.character_name LIKE '%${req.params.id}%'
+			WHERE LOWER(characters.character_name)
+			LIKE LOWER($1)
+			ORDER BY move_id;`,
+			[req.params.character.replace("_", " ")]
+		);
 		res.send(move_query);
 	}
 	catch (err) {
