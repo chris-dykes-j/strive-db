@@ -22,13 +22,13 @@ app.get("/characters", async (_, res) => {
 	}
 });
 
-// Gets requested character move data.
+// Gets requested character move list.
 app.get("/:character", async (req, res) => {
 	// console.log(req.params.character);
 	try {
 		const move_query = await pool.query(
-			`SELECT characters.character_name, move_list.*
-			FROM characters RIGHT JOIN move_list
+			`SELECT characters.character_name, move_list.move_name
+			FROM characters JOIN move_list
 			ON characters.character_id = move_list.character_id
 			WHERE LOWER(characters.character_name)
 			LIKE LOWER($1)
@@ -41,6 +41,28 @@ app.get("/:character", async (req, res) => {
 		if (err) { console.log(err); }
 	}
 })
+
+
+// Gets requested move data.
+app.get("/:character/:move", async (req, res) => {
+	// console.log(req.params.character, req.params.move);
+	try {
+		const move_query = await pool.query(
+			`SELECT characters.character_name, move_list.*
+			FROM characters RIGHT JOIN move_list
+			ON characters.character_id = move_list.character_id
+			WHERE LOWER(characters.character_name) LIKE LOWER($1)
+			AND LOWER(move_list.move_name) LIKE LOWER($2)
+			ORDER BY move_id;`,
+			[req.params.character.replace("_", " "), req.params.move]
+		);
+		res.send(move_query);
+	}
+	catch (err) {
+		if (err) { console.log(err); }
+	}
+})
+
 
 app.listen(PORT, () => {
 	console.log(`Heaven or Hell. Port: ${PORT}`);
