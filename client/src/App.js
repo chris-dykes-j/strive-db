@@ -1,10 +1,18 @@
-import Header from "./components/Header.js";
-import MoveList from "./components/MoveList";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
+import Character from './routes/Character';
+// import MoveList from "./components/MoveList";
 
 function App() {
   return (
     <div className="App">
-      <Header title="Ram" />
+      <Router>
+        <Routes>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/character/" component={Character} />
+        </Routes>
+      </Router>
     </div>
   );
 }
