@@ -40,7 +40,7 @@ app.get("/:character", async (req, res) => {
 	catch (err) {
 		if (err) { console.log(err); }
 	}
-})
+});
 
 
 // Gets requested move data.
@@ -61,7 +61,7 @@ app.get("/:character/:move", async (req, res) => {
 	catch (err) {
 		if (err) { console.log(err); }
 	}
-})
+});
 
 
 app.listen(PORT, () => {
