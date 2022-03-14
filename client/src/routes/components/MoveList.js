@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MoveList = () => {
-	const attacks = ([
-		"Dauro",
-		"Erarlumo",
-		"Sildo Detruo",
-		"Bajoneto",
-		"Agresa Ordono",
-		"Sabrobato",
-		"Calvados",
-		"Mortobato",
-	]);
+	const [attacks, setAttacks] = useState();
+	const getAttacks = async () => {
+		const response = await fetch("http://localhost:8000/ramlethal_valentine")
+			.then(response => response.json())
+			//.then((attackData) => {	attackData.forEach(element => attacks.push(element["move_name"]))	})
+			.catch((error) => console.error(error));
+		console.log(response[0]["move_name"]);
+		setAttacks(response);
+	}
+	useEffect(() => getAttacks(), []);
 	return (
 		<div>
-			{attacks.map(attack =>
-				(<h3 key={attacks.indexOf(attack)}>{attack}</h3>))}
+			{attacks && attacks.map(attack => (
+				<h3 key={attacks.indexOf(attack)}>{attack.move_name.replace("_", " ")}</h3>
+			))}
 		</div>
 	);
 };
