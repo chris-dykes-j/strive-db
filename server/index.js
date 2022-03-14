@@ -1,5 +1,6 @@
 const express = require("express");
 const pg = require("pg").Pool;
+const cors = require("cors");
 
 const app = express();
 const PORT = 8000;
@@ -10,6 +11,7 @@ const pool = new pg({
 });
 pool.connect();
 app.use(express.json());
+app.use(cors({ origin: true, credentials: true }));
 
 // Gets character names, cuz why not?
 app.get("/characters", async (_, res) => {
@@ -35,7 +37,7 @@ app.get("/:character", async (req, res) => {
 			ORDER BY move_id;`,
 			[req.params.character.replace("_", " ")]
 		);
-		res.send(move_query);
+		res.send(move_query.rows);
 	}
 	catch (err) {
 		if (err) { console.log(err); }

@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/character/" component={Character} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/character/" element={<Character />} />
         </Routes>
       </Router>
     </div>
@@ -19,15 +19,3 @@ function App() {
 
 export default App;
 
-/*
-  const [attacks, setAttacks] = useState([
-    "Dauro",
-    "Erarlumo",
-    "Sildo Detruo",
-    "Bajoneto",
-    "Agresa Ordono",
-    "Sabrobato",
-    "Calvados",
-    "Mortobato",
-  ]);
-*/

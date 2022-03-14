@@ -5,7 +5,6 @@ const MoveList = () => {
 	const getAttacks = async () => {
 		const response = await fetch("http://localhost:8000/ramlethal_valentine")
 			.then(response => response.json())
-			//.then((attackData) => {	attackData.forEach(element => attacks.push(element["move_name"]))	})
 			.catch((error) => console.error(error));
 		console.log(response[0]["move_name"]);
 		setAttacks(response);
