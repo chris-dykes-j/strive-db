@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Header from './components/Header';
+import MoveList from './components/MoveList';
 
 const Character = () => {
 	return (
-		<div>Character</div>
+		<div>
+			<Header title="Ramlethal" />
+			<MoveList />
+		</div>
 	)
-}
+};
 
-export default Character
+export default Character;
