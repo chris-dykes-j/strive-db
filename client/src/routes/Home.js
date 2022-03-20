@@ -5,6 +5,7 @@ const Home = () => {
 	return (
 		<div>
 			<Header title="Ram" />
+			<a href="/character">Link</a>
 		</div>
 	)
 }
