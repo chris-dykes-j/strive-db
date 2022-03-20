@@ -4,7 +4,7 @@ import Header from "./components/Header.js";
 const Home = () => {
 	return (
 		<div>
-			<Header title="Ram" />
+			<Header title="Character Select" />
 			<a href="/character">Link</a>
 		</div>
 	)

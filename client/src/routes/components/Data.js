@@ -1,8 +1,8 @@
 import React from 'react'
 
-const MoveData = () => {
+const Data = () => {
 	return (
-		<div>MoveData</div>
+		<div>Data</div>
 	)
 }
 

@@ -1,14 +1,23 @@
 import React from 'react';
 import Header from './components/Header';
 import Image from './components/Image';
-import MoveList from './components/MoveList';
+import List from './components/List';
+import { useState, useEffect } from 'react';
 
-const Character = () => {
+const Character = ({ charPath, charName }) => {
+	const [attacks, setAttacks] = useState();
+	const getAttacks = async () => {
+		const response = await fetch(`http://localhost:8000/${charPath}`)
+			.then(response => response.json())
+			.catch((error) => console.error(error));
+		setAttacks(response);
+	}
+	useEffect(() => getAttacks(), []);
 	return (
 		<div>
-			<Header title="Ramlethal" />
+			<Header title={charName} />
 			<Image />
-			<MoveList />
+			<List attacks={attacks} />
 		</div>
 	)
 };
