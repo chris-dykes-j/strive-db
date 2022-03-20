@@ -6,4 +6,4 @@ const Data = () => {
 	)
 }
 
-export default MoveData
+export default Data

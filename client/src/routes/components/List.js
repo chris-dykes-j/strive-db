@@ -1,13 +1,12 @@
 import React from 'react';
 
 const List = ({ attacks }) => {
-
 	return (
-		<div>
+		<ul>
 			{attacks && attacks.map(attack => (
-				<h3 key={attacks.indexOf(attack)}>{attack.move_name.replace("_", " ")}</h3>
+				<li key={attacks.indexOf(attack)}>{attack.move_name.replace("_", " ")}</li>
 			))}
-		</div>
+		</ul>
 	);
 };
 
