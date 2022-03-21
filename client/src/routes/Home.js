@@ -8,6 +8,6 @@ const Home = () => {
 			<a href="/character">Link</a>
 		</div>
 	)
-}
+};
 
-export default Home
+export default Home;

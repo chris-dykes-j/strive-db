@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Image from './components/Image';
 import List from './components/List';
 import { useState, useEffect } from 'react';
+// import Data from './components/Data';
 
 const Character = ({ charPath, charName }) => {
 	const [attacks, setAttacks] = useState();
@@ -12,12 +13,15 @@ const Character = ({ charPath, charName }) => {
 			.catch((error) => console.error(error));
 		setAttacks(response);
 	}
+	// const [moveData, setMove] = ({ })
+
 	useEffect(() => getAttacks(), []);
 	return (
 		<div>
 			<Header title={charName} />
 			<Image />
 			<List attacks={attacks} />
+
 		</div>
 	)
 };
@@ -25,3 +29,4 @@ const Character = ({ charPath, charName }) => {
 export default Character;
 
 
+// <Data moveData={moveData} />

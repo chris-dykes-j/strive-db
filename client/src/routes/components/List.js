@@ -1,17 +1,13 @@
 import React from 'react';
 
-const List = ({ attacks }) => {
+const List = ({ items }) => {
 	return (
 		<ul>
-			{attacks && attacks.map(attack => (
-				<li key={attacks.indexOf(attack)}>{attack.move_name.replace("_", " ")}</li>
+			{items && items.map(item => (
+				<li key={items.indexOf(item)}>{item.replace("_", " ")}</li>
 			))}
 		</ul>
 	);
-};
-
-List.defaultProps = {
-	title: "List"
 };
 
 export default List;

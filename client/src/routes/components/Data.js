@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const Data = () => {
+const Data = ({ move }) => {
 	return (
-		<div>Data</div>
+		<div>
+			<h1>{move}</h1>
+		</div>
 	)
-}
+};
 
-export default Data
+export default Data;
