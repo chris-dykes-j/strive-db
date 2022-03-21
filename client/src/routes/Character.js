@@ -20,7 +20,7 @@ const Character = ({ charPath, charName }) => {
 		<div>
 			<Header title={charName} />
 			<Image />
-			<List attacks={attacks} />
+			<List items={attacks} />
 
 		</div>
 	)
