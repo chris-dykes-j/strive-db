@@ -37,7 +37,10 @@ app.get("/:character", async (req, res) => {
 			ORDER BY move_id;`,
 			[req.params.character.replace("_", " ")]
 		);
-		res.send(move_query.rows);
+		const move_list = move_query.rows.map(attack => {
+			return attack.move_name;
+		});
+		res.send(move_list);
 	}
 	catch (err) {
 		if (err) { console.log(err); }
