@@ -29,7 +29,7 @@ app.get("/:character", async (req, res) => {
 	// console.log(req.params.character);
 	try {
 		const move_query = await pool.query(
-			`SELECT characters.character_name, move_list.move_name
+			`SELECT characters.character_name, move_list.move_name, move_list.input
 			FROM characters JOIN move_list
 			ON characters.character_id = move_list.character_id
 			WHERE LOWER(characters.character_name)
@@ -37,9 +37,22 @@ app.get("/:character", async (req, res) => {
 			ORDER BY move_id;`,
 			[req.params.character.replace("_", " ")]
 		);
-		const move_list = move_query.rows.map(attack => {
+		// Attempt to fix react error. Did not work out. >_<
+		/*
+		let extra = 2;
+		const move_list = move_query.rows.map((attack, i, rows) => {
+			if (i > 0) {
+				if (rows[i - 1]["move_name"] === rows[i]["move_name"]) {
+					let res = `${attack.move_name} x ${extra}`;
+					extra++;
+					return res;
+				}
+			}
 			return attack.move_name;
 		});
+		console.log(move_list);
+		*/
+		const move_list = move_query.rows.map(attack => attack.input);
 		res.send(move_list);
 	}
 	catch (err) {

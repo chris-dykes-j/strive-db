@@ -12,10 +12,12 @@ const Character = ({ charPath, charName }) => {
 			.then(response => response.json())
 			.catch((error) => console.error(error));
 		setAttacks(response);
+		console.log(response);
 	}
 	// const [moveData, setMove] = ({ })
 
 	useEffect(() => getAttacks(), []);
+
 	return (
 		<div>
 			<Header title={charName} />
