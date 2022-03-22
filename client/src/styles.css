@@ -1,0 +1,5 @@
+.character_image {
+	object-fit: cover;
+	width: 500px;
+	height: 600px;
+}

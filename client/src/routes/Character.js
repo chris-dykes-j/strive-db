@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Image from './components/Image';
 import List from './components/List';
 import { useState, useEffect } from 'react';
+import ram from "./../images/RamIdle.gif";
 // import Data from './components/Data';
 
 const Character = ({ charPath, charName }) => {
@@ -21,7 +22,7 @@ const Character = ({ charPath, charName }) => {
 	return (
 		<div>
 			<Header title={charName} />
-			<Image />
+			<Image gif={ram} />
 			<List items={attacks} />
 
 		</div>

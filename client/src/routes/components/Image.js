@@ -1,9 +1,8 @@
 import React from 'react';
-import ram from "../../images/RamIdle.gif";
 
-const Image = () => {
+const Image = ({ gif }) => {
 	return (
-		<img src={ram} alt="ram-idle-animation" />
+		<img src={gif} alt="ram-idle-animation" className='character_image' />
 	)
 }
 
