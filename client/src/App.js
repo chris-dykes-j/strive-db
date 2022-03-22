@@ -10,8 +10,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/character/" element={
-            <Character charPath="ramlethal_valentine" charName="Ramlethal" />}
+          <Route exact path="/ramlethal/" element={
+            <Character charPath="ramlethal_valentine" charName="Ramlethal Valentine" />}
           />
         </Routes>
       </Router>

@@ -15,8 +15,6 @@ const Character = ({ charPath, charName }) => {
 		setAttacks(response);
 		console.log(response);
 	}
-	// const [moveData, setMove] = ({ })
-
 	useEffect(() => getAttacks(), []);
 
 	return (

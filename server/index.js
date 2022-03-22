@@ -26,7 +26,6 @@ app.get("/characters", async (_, res) => {
 
 // Gets requested character move list.
 app.get("/:character", async (req, res) => {
-	// console.log(req.params.character);
 	try {
 		const move_query = await pool.query(
 			`SELECT characters.character_name, move_list.move_name, move_list.input
@@ -35,7 +34,7 @@ app.get("/:character", async (req, res) => {
 			WHERE LOWER(characters.character_name)
 			LIKE LOWER($1)
 			ORDER BY move_id;`,
-			[req.params.character.replace("_", " ")]
+			[req.params.character]
 		);
 
 		// Nested if is not pretty, but this makes sure that moves of the same name have their inputs attached.
@@ -44,10 +43,10 @@ app.get("/:character", async (req, res) => {
 			if (i > 0 && i < move_query.rows.length - 1) {
 				if (rows[i]["move_name"] === rows[i + 1]["move_name"] || rows[i]["move_name"] === rows[i - 1]["move_name"]) {
 					let res = `${attack.move_name} (${attack.input})`;
-					return res.replace("_", " ");
+					return res.replace(/_/g, " ");
 				}
 			}
-			return attack.move_name.replace("_", " ");
+			return attack.move_name.replace(/_/g, " ");
 		});
 		res.send(move_list);
 	}
@@ -59,7 +58,6 @@ app.get("/:character", async (req, res) => {
 
 // Gets requested move data.
 app.get("/:character/:move", async (req, res) => {
-	// console.log(req.params.character, req.params.move);
 	try {
 		const move_query = await pool.query(
 			`SELECT characters.character_name, move_list.*
@@ -68,9 +66,9 @@ app.get("/:character/:move", async (req, res) => {
 			WHERE LOWER(characters.character_name) LIKE LOWER($1)
 			AND LOWER(move_list.move_name) LIKE LOWER($2)
 			ORDER BY move_id;`,
-			[req.params.character.replace("_", " "), req.params.move]
+			[req.params.character.replace(/_/g, " "), req.params.move]
 		);
-		res.send(move_query);
+		res.send(move_query.rows[0]);
 	}
 	catch (err) {
 		if (err) { console.log(err); }
