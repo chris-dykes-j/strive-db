@@ -55,10 +55,10 @@ app.get("/:character", async (req, res) => {
 	}
 });
 
-
 // Gets requested move data.
 app.get("/:character/:move", async (req, res) => {
 	try {
+		// const regex = / / Regex just in case I later choose to make more complicated.
 		const move_query = await pool.query(
 			`SELECT characters.character_name, move_list.*
 			FROM characters RIGHT JOIN move_list
@@ -66,15 +66,15 @@ app.get("/:character/:move", async (req, res) => {
 			WHERE LOWER(characters.character_name) LIKE LOWER($1)
 			AND LOWER(move_list.move_name) LIKE LOWER($2)
 			ORDER BY move_id;`,
-			[req.params.character.replace(/_/g, " "), req.params.move]
+			[req.params.character.replace(/_/g, " "), req.params.move.match(/^\S*/)[0]]
 		);
+		console.log(move_query.rows[0]);
 		res.send(move_query.rows[0]);
 	}
 	catch (err) {
 		if (err) { console.log(err); }
 	}
 });
-
 
 app.listen(PORT, () => {
 	console.log(`Heaven or Hell. Port: ${PORT}`);
