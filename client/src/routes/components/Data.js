@@ -8,7 +8,7 @@ const Data = ({ move }) => {
 			.then(response => response.json())
 			.catch((error) => console.error(error));
 		setMove(response);
-		console.log(response["move_name"]);
+		// console.log(response["move_name"]);
 	}
 	useEffect(() => getMove(), []);
 	function test() { console.log(moveData) }

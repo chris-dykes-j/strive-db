@@ -37,14 +37,10 @@ app.get("/:character", async (req, res) => {
 			[req.params.character]
 		);
 
-		// Nested if is not pretty, but this makes sure that moves of the same name have their inputs attached.
-		// Fixes a silly react error, and was more desirable anyways.
-		const move_list = move_query.rows.map((attack, i, rows) => {
-			if (i > 0 && i < move_query.rows.length - 1) {
-				if (rows[i]["move_name"] === rows[i + 1]["move_name"] || rows[i]["move_name"] === rows[i - 1]["move_name"]) {
-					let res = `${attack.move_name} (${attack.input})`;
-					return res.replace(/_/g, " ");
-				}
+		// Quick fix for returning moves of same name.
+		const move_list = move_query.rows.map(attack => {
+			if (attack.move_name != attack.input) {
+				return `${attack.move_name} (${attack.input})`.replace(/_/g, " ");
 			}
 			return attack.move_name.replace(/_/g, " ");
 		});
@@ -68,8 +64,8 @@ app.get("/:character/:move", async (req, res) => {
 			ORDER BY move_id;`,
 			[req.params.character.replace(/_/g, " "), req.params.move.match(/^\S*/)[0]]
 		);
-		console.log(move_query.rows[0]);
-		res.send(move_query.rows[0]);
+		console.log(move_query.rows);
+		res.send(move_query.rows);
 	}
 	catch (err) {
 		if (err) { console.log(err); }
