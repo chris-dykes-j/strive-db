@@ -5,7 +5,9 @@ const Home = () => {
 	return (
 		<div>
 			<Header title="Character Select" />
-			<a href="/ramlethal">Link</a>
+			<a href="/ramlethal">Ramlethal</a>
+			<br />
+			<a href="/may">May</a>
 		</div>
 	)
 };
