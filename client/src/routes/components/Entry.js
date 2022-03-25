@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const Entry = ({ move, character }) => {
-	function test() {
-		const [moveData, setMove] = useState();
-		const getMove = async () => {
-			const response = await fetch(`http://localhost:8000/${character}/${move}`)
-				.then(response => response.json())
-				.catch((error) => console.error(error));
-			setMove(response[0]);
-		}
-		useEffect(() => getMove(), []);
-		return moveData;
+	const [moveData, setMove] = useState();
+	const getMove = async () => {
+		const response = await fetch(`http://localhost:8000/${character}/${move}`)
+			.then(response => response.json())
+			.catch((error) => console.error(error));
+		setMove(response);
 	}
+	useEffect(() => getMove(), []);
+	const test = () => console.log(moveData);
 	return (
 		<div>
-			<button >{move}</button>
+			<button onClick={test}>{move}</button>
 		</div>
 	)
 };
