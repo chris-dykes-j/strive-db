@@ -4,11 +4,11 @@ import Entry from './Entry';
 const List = ({ items }) => {
 
 	return (
-		<ul>
+		<div>
 			{items && items.map(item => (
-				<li key={items.indexOf(item)} ><Entry move={item} /></li>
+				<Entry key={items.indexOf(item)} move={item} />
 			))}
-		</ul>
+		</div>
 	);
 };
 
