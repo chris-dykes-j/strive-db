@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Entry from './Entry';
 
 const List = ({ items }) => {
 
 	return (
 		<ul>
 			{items && items.map(item => (
-				<li key={items.indexOf(item)} >{item}</li>
+				<li key={items.indexOf(item)} ><Entry move={item} /></li>
 			))}
 		</ul>
 	);

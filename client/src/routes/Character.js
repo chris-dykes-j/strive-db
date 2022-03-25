@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Image from './components/Image';
 import List from './components/List';
-import Data from './components/Data';
 
 const Character = ({ charPath, charName, charIdle }) => {
 	const [charAttacks, setAttacks] = useState();
@@ -20,7 +19,6 @@ const Character = ({ charPath, charName, charIdle }) => {
 			<Header title={charName} />
 			<Image gif={charIdle} />
 			<List items={charAttacks} />
-			<Data />
 		</div>
 	)
 };
