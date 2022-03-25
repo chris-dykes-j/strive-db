@@ -64,7 +64,6 @@ app.get("/:character/:move", async (req, res) => {
 			ORDER BY move_id;`,
 			[req.params.character.replace(/_/g, " "), req.params.move.match(/^\S*/)[0]]
 		);
-		console.log(move_query.rows);
 		res.send(move_query.rows);
 	}
 	catch (err) {

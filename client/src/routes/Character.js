@@ -18,7 +18,7 @@ const Character = ({ charPath, charName, charIdle }) => {
 			<a href="/">Home</a>
 			<Header title={charName} />
 			<Image gif={charIdle} />
-			<List items={charAttacks} />
+			<List items={charAttacks} character={charName.toLowerCase().replace(" ", "_")} />
 		</div>
 	)
 };
