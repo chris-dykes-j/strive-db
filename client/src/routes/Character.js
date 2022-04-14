@@ -11,10 +11,9 @@ const Character = ({ charPath, charName, charIdle }) => {
 				.then(response => response.json())
 				.catch((error) => console.error(error));
 			setAttacks(response);
-			console.log(response);
 		}
+		getAttacks();
 	}, []);
-
 	return (
 		<div>
 			<a href="/">Home</a>

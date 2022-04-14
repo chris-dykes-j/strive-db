@@ -9,6 +9,7 @@ const Entry = ({ move, character }) => {
 				.catch((error) => console.error(error));
 			setMove(response);
 		}
+		getMove();
 	}, []);
 	const test = () => console.log(moveData);
 	return (
