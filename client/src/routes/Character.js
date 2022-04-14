@@ -5,13 +5,15 @@ import List from './components/List';
 
 const Character = ({ charPath, charName, charIdle }) => {
 	const [charAttacks, setAttacks] = useState();
-	const getAttacks = async () => {
-		const response = await fetch(`http://localhost:8000/${charPath}`)
-			.then(response => response.json())
-			.catch((error) => console.error(error));
-		setAttacks(response);
-	}
-	useEffect(() => getAttacks(), []);
+	useEffect(() => {
+		async function getAttacks() {
+			const response = await fetch(`http://localhost:8000/${charPath}`)
+				.then(response => response.json())
+				.catch((error) => console.error(error));
+			setAttacks(response);
+			console.log(response);
+		}
+	}, []);
 
 	return (
 		<div>
