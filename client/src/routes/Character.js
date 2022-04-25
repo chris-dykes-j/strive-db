@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Image from './components/Image';
 import List from './components/List';
+import Table from './components/Table';
 
 const Character = ({ charPath, charName, charIdle }) => {
 	const [charAttacks, setAttacks] = useState();
@@ -20,6 +21,7 @@ const Character = ({ charPath, charName, charIdle }) => {
 			<Header title={charName} />
 			<Image gif={charIdle} />
 			<List items={charAttacks} character={charName.toLowerCase().replace(" ", "_")} />
+			<Table />
 		</div>
 	)
 };
