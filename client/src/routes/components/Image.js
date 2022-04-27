@@ -2,7 +2,7 @@ import React from 'react';
 
 const Image = ({ gif }) => {
 	return (
-		<img src={gif} alt="ram-idle-animation" className='character_image' />
+		<img src={gif} alt="character-idle-animation" className='character_image' />
 	)
 }
 
