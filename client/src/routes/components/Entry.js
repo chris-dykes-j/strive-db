@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Entry = ({ move, character }) => {
+const Entry = ({ character, move, sendData }) => {
 	const [moveData, setMove] = useState();
 	useEffect(() => {
 		async function getMove() {
@@ -10,11 +10,12 @@ const Entry = ({ move, character }) => {
 			setMove(response);
 		}
 		getMove();
-	}, []);
-	const test = () => console.log(moveData);
+	}, [character, move]);
+	console.log(moveData)
+	//const makeTable = () => this.setTable({ move });
 	return (
 		<div>
-			<button onClick={test}>{move}</button>
+			<button onClick={sendData}>{move}</button>
 		</div>
 	)
 };
