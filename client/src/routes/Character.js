@@ -26,6 +26,3 @@ const Character = ({ charPath, charName, charIdle }) => {
 };
 
 export default Character;
-
-
-// <Data moveData={moveData} />
